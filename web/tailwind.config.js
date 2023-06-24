@@ -1,18 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './src/**/*.tsx',
     './index.html'
   ],
   theme: {
-    fontFamily: {
-      sans:['Montserrat','Roboto','sans-serif']
+    fontFamily:{
+      sans:['Montserrat', 'sans-serif']
     },
     extend: {
       colors:{},
-      backgroundImage:{}
+      backgroundImage:{},
+      
     },
   },
   plugins: [],
 }
-
