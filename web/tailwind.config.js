@@ -6,14 +6,12 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      'green': '#13f287',
-      'green-dark': '#0C9453',
-      'black': '#0d0d0d',
-      'white': '#f5f5f5'
-    },
     extend: {
-      backgroundImage: {},
+      colors:{
+        'green':'#13F287',
+        'green-dark':'#0C9453',
+        'zinc-f':'#f5f5f5'
+      },
     },
   },
   plugins: [],
