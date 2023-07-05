@@ -1,7 +1,7 @@
 import img_login from '@/assets/img/img_login.jpg'
 import { Botao } from '@/components/buttons/primary-button'
 import { IconInput } from '@/components/inputs/icon-input'
-import { LogoHorizontal } from '@/components/logo/logos'
+import { LogoHorizontal, LogoHorizontalBlack } from '@/components/logo/logos'
 
 import { FaUser, FaKey, } from 'react-icons/fa'
 
@@ -19,7 +19,7 @@ export function Login() {
 
                 <div className="flex justify-center my-[15%] w-60">
                     <a href='#'>
-                        <LogoHorizontal />
+                        <LogoHorizontalBlack />
                     </a>
                 </div>
 
