@@ -11,7 +11,7 @@ export function Botao(props: ButtonProps) {
     return <>
         <a href="#">
             <div className="bg-green text-zinc-f flex justify-center items-center h-12 w-auto rounded-full px-4 hover:bg-green-dark ">
-                <span className="pr-2 md:p-2"><b>{icone}</b></span>
+                {icone}
                 <h2 className="hidden md:block">
                     <b>{props.tittle}</b>
                 </h2>
