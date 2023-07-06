@@ -49,3 +49,9 @@ def results_produto(request):
     produto_list = Produto.objects.order_by('nome')
     data = [produto.get_data_dict() for produto in produto_list]
     return JsonResponse({'data':data})
+
+def find_username(request, username):
+    from .models import Usuario
+    usuario = Usuario.objects.get(username=username)
+    data = usuario.get_data_dict()
+    return  JsonResponse({'data':data})

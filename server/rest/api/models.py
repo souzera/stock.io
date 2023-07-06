@@ -11,6 +11,9 @@ class Usuario(models.Model):
     username = models.CharField(unique=True)
     password = models.CharField()
 
+    def __str__(self):
+        return self.username
+
     def get_data_dict(self):
         return {
             'url_avatar': self.url_avatar,

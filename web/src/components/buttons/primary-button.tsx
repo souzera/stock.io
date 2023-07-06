@@ -2,10 +2,10 @@ import { IconBaseProps } from "react-icons/lib";
 
 interface ButtonProps{
     tittle: string;
-    icon: IconBaseProps;
+    icon?: IconBaseProps;
 }
 
-export function Botao(props: ButtonProps) {
+export function PrimaryButton(props: ButtonProps) {
     const icone = props.icon
 
     return <>

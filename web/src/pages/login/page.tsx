@@ -1,14 +1,20 @@
 import img_login from '@/assets/img/img_login.jpg'
-import { Botao } from '@/components/buttons/primary-button'
+import { LoginForm } from '@/components/forms/login-form'
 import { IconInput } from '@/components/inputs/icon-input'
 import { LogoHorizontal, LogoHorizontalBlack } from '@/components/logo/logos'
-
 import { FaUser, FaKey, } from 'react-icons/fa'
+
 
 export function Login() {
 
+    //ilustração
     const pathImglogin = img_login.src
 
+    return <>
+        <LoginForm />
+    </>
+    
+    /*
     return <>
         <div className="flex flex-1 h-screen bg-zinc-f">
             <div className="flex items-center justify-center bg-zinc-900 text-white w-[60%]">
@@ -32,29 +38,16 @@ export function Login() {
 
                     <hr />
 
-                    <div id='form-login' className='flex flex-col w-[70%] mt-4 gap-3'>
-                        <IconInput
-                            placeholder={'username'}
-                            icon={<FaUser color='gray'/>} 
-                            type={'text'}
-                        />
-
-                        <IconInput
-                            placeholder='password'
-                            icon={<FaKey color='gray'/>}
-                            type={'password'}
-                        />
-
-                        <Botao 
-                            tittle={'Log In'} 
-                            icon={null}/>
-
+                    <div className='bg-orange-500 flex flex-1'>
+                        
                     </div>
+
 
                 </div>
 
             </div>
         </div>
     </>
+    */
 
 }
