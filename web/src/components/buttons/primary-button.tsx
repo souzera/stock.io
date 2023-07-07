@@ -1,6 +1,7 @@
+import { ButtonHTMLAttributes } from "react";
 import { IconBaseProps } from "react-icons/lib";
 
-interface ButtonProps{
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     tittle: string;
     icon?: IconBaseProps;
 }

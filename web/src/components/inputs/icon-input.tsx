@@ -3,7 +3,6 @@ import { IconBaseProps } from "react-icons/lib";
 
 
 interface IconInputProps extends InputHTMLAttributes<HTMLInputElement>{
-    placeholder: string;
     icon?: IconBaseProps;
     type: string;
 }
