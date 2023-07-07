@@ -1,9 +1,10 @@
+import { InputHTMLAttributes } from "react";
 import { IconBaseProps } from "react-icons/lib";
 
-interface IconInputProps{
-    placeholder: string
-    icon: IconBaseProps
-    type: string
+
+interface IconInputProps extends InputHTMLAttributes<HTMLInputElement>{
+    icon?: IconBaseProps;
+    type: string;
 }
 
 export function IconInput(props:IconInputProps) {

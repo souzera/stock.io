@@ -1,11 +1,12 @@
+import { ButtonHTMLAttributes } from "react";
 import { IconBaseProps } from "react-icons/lib";
 
-interface ButtonProps{
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     tittle: string;
-    icon: IconBaseProps;
+    icon?: IconBaseProps;
 }
 
-export function Botao(props: ButtonProps) {
+export function PrimaryButton(props: ButtonProps) {
     const icone = props.icon
 
     return <>

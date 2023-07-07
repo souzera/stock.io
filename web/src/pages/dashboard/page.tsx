@@ -3,7 +3,7 @@ import { HiInbox, HiTruck } from 'react-icons/hi'
 import { BiSolidExit } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
 import { FaCartPlus } from 'react-icons/fa'
-import { Botao } from '@/components/buttons/primary-button'
+import { PrimaryButton } from '@/components/buttons/primary-button'
 
 
 
@@ -60,7 +60,7 @@ export function Dashboard() {
                     <div className="bg-white rounded-xl h-[100%] shadow-sm p-6">
                         <div className='flex flex-1 justify-between items-center h-[10%] px-1'>
                             <span className='text-2xl font-bold'>Produtos</span>
-                            <Botao
+                            <PrimaryButton
                                 icon={<FaCartPlus />}
                                 tittle='Adicionar Produto'
                             />
