@@ -1,12 +1,13 @@
 import { ButtonHTMLAttributes } from "react";
 import { IconBaseProps } from "react-icons/lib";
+import { ButtonProps } from "antd";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+interface CustomButtonProps extends ButtonProps{
     tittle: string;
     icon?: IconBaseProps;
 }
 
-export function PrimaryButton(props: ButtonProps) {
+export function PrimaryButton(props: CustomButtonProps) {
     const icone = props.icon
 
     return <>
