@@ -30,9 +30,7 @@ def find_username(request, username):
     data = usuario.get_data_dict()
     return  JsonResponse({'data':data})
 
-#TODO: refazer
-def logar(request):
-    pass
+
 
 
 ## Fornecedor

@@ -1,5 +1,5 @@
 
-const host_server = '127.0.0.1'
+const host_server = 'localhost'
 const port_server = '8000' 
 
 export function urlServer(){
