@@ -4,7 +4,7 @@ import { LoginForm } from '@/components/forms/login-form'
 import { LogoHorizontalBlack } from '@/components/logo/logos'
 
 
-export function Login() {
+export default function Login() {
 
     //ilustração
     const pathImglogin = img_login.src
