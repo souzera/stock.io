@@ -10,7 +10,7 @@ module.exports = {
       colors:{
         'green':'#13F287',
         'green-dark':'#0C9453',
-        'zinc-f':'#f5f5f5'
+        'zinc-f':'#f5f5f5',
       },
     },
   },

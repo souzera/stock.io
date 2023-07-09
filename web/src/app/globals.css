@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+div{
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: ease-in;
+}

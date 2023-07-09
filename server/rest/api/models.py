@@ -34,6 +34,9 @@ class Fornecedor(models.Model):
             'contato': self.contato
         }
 
+    def __str__(self):
+        return self.nome
+
 class Produto(models.Model):
     nome = models.CharField(max_length=512)
     preco = models.FloatField()
@@ -43,8 +46,11 @@ class Produto(models.Model):
         return {
             'nome' : self.nome,
             'preco' : self.preco,
-            'fornecedor': self.fornecedor.get_data_dict()
+            'fornecedor': str(self.fornecedor)
         }
+
+    def __str__(self):
+        return self.nome
 
 class Compra(models.Model):
     data_compra = models.DateField(auto_now=True)

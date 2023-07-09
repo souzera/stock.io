@@ -4,7 +4,7 @@ import { FaKey, FaUser } from "react-icons/fa";
 
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState,  } from "react";
 import { Usuario } from "@/types/usuario";
 import { urlServer } from "@/connection/connection-settings";
 
