@@ -1,18 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors:{
-        'green':'#13F287',
-        'green-dark':'#0C9453',
-        'zinc-f':'#f5f5f5',
-      },
+    extend: {},
+    fontFamily: {
+      sans: ['Montserrat', 'sans-serif'],
+      serif: ['Merriweather', 'serif'],
     },
   },
   plugins: [],
 }
+
