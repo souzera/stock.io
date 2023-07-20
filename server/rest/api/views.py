@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -30,7 +30,20 @@ def find_username(request, username):
     data = usuario.get_data_dict()
     return  JsonResponse({'data':data})
 
-
+def logging(resquest):
+    from .models import Usuario
+    if resquest.method == 'POST':
+        username = resquest.POST['username']
+        password = request.POST['password']
+        print(f'username: {username}\npassword: {password}')
+        user =  authenticate(resquest, username=username, password=password)
+        if user is not None:
+            login(resquest, user)
+            usuario = Usuario.objects.get(username=username)
+            data = usuario.get_data_dict()
+            return JsonResponse({'data':data})
+        else:
+            return JsonResponse({'message':'Não foi possível efetuar o login'})
 
 
 ## Fornecedor
@@ -66,3 +79,26 @@ def details_produto(request, produto_id):
         'produto_id': produto_id,
         'data' : produto.get_data_dict()
     })
+
+def add_produto(request):
+    from .models import Produto
+    from .models import Fornecedor
+    if request.method == 'POST':
+        nome = request.POST['nome']
+        preco = request.POST['preco']
+        fornecedor_id = request.POST['fornecedor_id']
+
+        fornecedor = Fornecedor.objects.get(id=fornecedor_id);
+        print(fornecedor)
+
+        produto = Produto(
+            nome = nome,
+            preco = preco,
+            fornecedor = fornecedor
+        )
+
+        produto.save()
+
+        return JsonResponse({'message':'Produto adicionado'}, status=200)
+    else:
+        return JsonResponse({'message':'Não foi possível adicionar o produto'}, status=405)
