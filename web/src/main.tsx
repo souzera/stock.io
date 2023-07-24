@@ -8,11 +8,16 @@ import {
 } from "react-router-dom"
 
 import { Home } from './pages/home/home.tsx'
+import { Login } from './pages/login/login.tsx'
 
 const router = createBrowserRouter([
   {
     path:'/',
     element: <Home/>
+  },
+  {
+    path:'/login',
+    element:<Login/>
   }
 ])
 
