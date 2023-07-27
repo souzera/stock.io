@@ -9,6 +9,7 @@ import {
 
 import { Home } from './pages/home/home.tsx'
 import { Login } from './pages/login/login.tsx'
+import { CadastroUsuario } from './pages/cadastro/cadastro-usuario.tsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path:'/login',
     element:<Login/>
+  },
+  {
+    path:'/cadastrar-se',
+    element:<CadastroUsuario/>
   }
 ])
 

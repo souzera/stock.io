@@ -51,7 +51,7 @@ export function Login() {
                                 />
                             </Form.Item>
 
-                            <span className="text-base text-zinc-300 mb-1 font-semibold">Password</span>
+                            <span className="text-base text-zinc-300 mb-1 font-semibold">Senha</span>
 
                             <Form.Item
                                 id="password"
@@ -65,7 +65,7 @@ export function Login() {
                             >
                                 <Input.Password
                                     prefix={<IoIosKey className='text-zinc-300 text-xl' />}
-                                    placeholder="password"
+                                    placeholder="senha"
                                     size="large"
                                 />
 
@@ -101,13 +101,16 @@ export function Login() {
                                     <span className="text-white text-xl font-bold">Entrar</span>
                                 </Button>
 
-                                <div className="my-1 text-center">
-                                    <a className="text-zinc-400 underline hover:text-zinc-500" href="#">Esqueceu a senha?</a>
-                                </div>
                             </Form.Item>
-
-                            
-
+                            <div className=" text-zinc-400 placeholder:my-1 text-center">
+                                <div>
+                                    <span>Não possui conta? </span>
+                                    <a className=" underline hover:text-zinc-500" href="/cadastrar-se">Cadastrar-se</a>
+                                </div>
+                                <div>
+                                    <a className=" underline hover:text-zinc-500" href="#">Esqueceu a senha?</a>
+                                </div>
+                            </div>
                         </Form>
                     </div>
                 </main>
