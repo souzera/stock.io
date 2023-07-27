@@ -13,7 +13,7 @@ export function Home() {
                             Login
                         </div>
                     </a>
-                    <a href="#">
+                    <a href="/cadastrar-se">
                         <div className="scale-95 bg-purple-500 py-3 px-5 rounded-2xl font-bold text-white hover:scale-100 transition duration-1000 ease-in-out">
                             Cadastrar-se
                         </div>
