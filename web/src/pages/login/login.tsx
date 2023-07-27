@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input } from "antd"
+import { Button, Checkbox, ConfigProvider, Form, Input } from "antd"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 
@@ -30,7 +30,7 @@ export function Login() {
                             </h4>
                         </div>
 
-                        <Form className="flex flex-col justify-center items-stretch w-[90%]">
+                        <Form className="flex flex-col justify-start items-stretch w-[90%] gap-0">
 
                             <span className="text-base text-zinc-300 mb-1 font-semibold">Username</span>
 
@@ -39,8 +39,8 @@ export function Login() {
                                 id="username"
                                 rules={[
                                     {
-                                        required:true,
-                                        message:'digite um usuário'
+                                        required: true,
+                                        message: 'digite um usuário'
                                     }
                                 ]}
                             >
@@ -58,8 +58,8 @@ export function Login() {
                                 name="password"
                                 rules={[
                                     {
-                                        required:true,
-                                        message:'Senha incorreta'
+                                        required: true,
+                                        message: 'Senha incorreta'
                                     }
                                 ]}
                             >
@@ -71,28 +71,42 @@ export function Login() {
 
                             </Form.Item>
 
-                            <Form.Item 
+                            <Form.Item
+                                className="flex flex-col text-xs"
                                 name='remenber'
                                 valuePropName="checked"
                                 wrapperCol={
                                     {
-                                        offset:2,
-                                        span:16
+                                        offset: 1
                                     }
                                 }
                             >
 
-                                <Checkbox className='fill-purple-500'>Lembra-me</Checkbox>
+
+                                <ConfigProvider
+                                    theme={{
+                                        token: {
+                                            colorPrimary: "#a855f7"
+                                        }
+                                    }}
+                                >
+                                    <Checkbox>Lembra-me</Checkbox>
+                                </ConfigProvider>
 
                             </Form.Item>
 
-                            <Form.Item>
+                            <Form.Item className="flex justify-center items-center">
 
                                 <Button className="bg-purple-500 rounded-full flex flex-1 justify-center items-center py-6 px-12 scale-95 transition duration-1000 ease-in-out hover:scale-100" htmlType="submit">
                                     <span className="text-white text-xl font-bold">Entrar</span>
                                 </Button>
 
+                                <div className="my-1 text-center">
+                                    <a className="text-zinc-400 underline hover:text-zinc-500" href="#">Esqueceu a senha?</a>
+                                </div>
                             </Form.Item>
+
+                            
 
                         </Form>
                     </div>
