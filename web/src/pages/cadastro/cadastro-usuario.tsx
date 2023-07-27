@@ -1,10 +1,13 @@
-import { Button, Form, Input, Space } from "antd";
+import { Button, Form, Input } from "antd";
 
 import { FaIdCardAlt } from 'react-icons/fa'
 import { MdAlternateEmail } from 'react-icons/md'
 import { IoIosKey } from 'react-icons/io'
 
 export function CadastroUsuario() {
+
+    //TODO: post do usuario
+
     return (
         <>
             <div className="flex flex-1 h-screen overflow-hidden">

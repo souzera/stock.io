@@ -1,5 +1,5 @@
 
-export interface UsuarioProps{
+export interface Usuario{
     url_avatar?: string,
     nome: string,
     username: string,

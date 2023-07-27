@@ -1,8 +1,28 @@
 import { Button, Checkbox, ConfigProvider, Form, Input } from "antd"
+import { useState } from "react"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 
+interface LoginProps{
+    username: string,
+    password: string,
+    remember: boolean
+}
+
 export function Login() {
+
+    const [ login, setLogin ] = useState<LoginProps|undefined>(undefined);
+
+    const onFinish = (values: LoginProps) => {
+        console.log('Sucess: ', values)
+        setLogin(values)
+
+        // TODO: validar login
+    }
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo)
+    }
 
     return (
         <>
@@ -30,88 +50,96 @@ export function Login() {
                             </h4>
                         </div>
 
-                        <Form className="flex flex-col justify-start items-stretch w-[90%] gap-0">
-
-                            <span className="text-base text-zinc-300 mb-1 font-semibold">Username</span>
-
-                            <Form.Item
-                                name='username'
-                                id="username"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'digite um usuário'
-                                    }
-                                ]}
-                            >
-                                <Input
-                                    prefix={<BiSolidUser className='text-zinc-300 text-xl' />}
-                                    placeholder="username"
-                                    size="large"
-                                />
-                            </Form.Item>
-
-                            <span className="text-base text-zinc-300 mb-1 font-semibold">Senha</span>
-
-                            <Form.Item
-                                id="password"
-                                name="password"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Senha incorreta'
-                                    }
-                                ]}
-                            >
-                                <Input.Password
-                                    prefix={<IoIosKey className='text-zinc-300 text-xl' />}
-                                    placeholder="senha"
-                                    size="large"
-                                />
-
-                            </Form.Item>
-
-                            <Form.Item
-                                className="flex flex-col text-xs"
-                                name='remenber'
-                                valuePropName="checked"
-                                wrapperCol={
-                                    {
-                                        offset: 1
-                                    }
+                        <ConfigProvider
+                            theme={{
+                                token: {
+                                    colorPrimary: "#a855f7"
                                 }
+                            }}
+                        >
+
+
+
+                            <Form
+                                className="flex flex-col justify-start items-stretch w-[90%] gap-0"
+                                initialValues={{ remember: true }}
+                                onFinish={onFinish}
+                                onFinishFailed={onFinishFailed}
                             >
 
+                                <span className="text-base text-zinc-300 mb-1 font-semibold">Username</span>
 
-                                <ConfigProvider
-                                    theme={{
-                                        token: {
-                                            colorPrimary: "#a855f7"
+                                <Form.Item
+                                    name='username'
+                                    id="username"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'digite um usuário'
                                         }
-                                    }}
+                                    ]}
                                 >
+                                    <Input
+                                        prefix={<BiSolidUser className='text-zinc-300 text-xl' />}
+                                        placeholder="username"
+                                        size="large"
+                                    />
+                                </Form.Item>
+
+                                <span className="text-base text-zinc-300 mb-1 font-semibold">Senha</span>
+
+                                <Form.Item
+                                    id="password"
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Senha incorreta'
+                                        }
+                                    ]}
+                                >
+                                    <Input.Password
+                                        prefix={<IoIosKey className='text-zinc-300 text-xl' />}
+                                        placeholder="senha"
+                                        size="large"
+                                    />
+
+                                </Form.Item>
+
+                                <Form.Item
+                                    className="flex flex-col text-xs"
+                                    name='remember'
+                                    valuePropName="checked"
+                                    wrapperCol={
+                                        {
+                                            offset: 1
+                                        }
+                                    }
+                                >
+
                                     <Checkbox>Lembra-me</Checkbox>
-                                </ConfigProvider>
 
-                            </Form.Item>
+                                </Form.Item>
 
-                            <Form.Item className="flex justify-center items-center">
+                                <Form.Item className="flex justify-center items-center">
 
-                                <Button className="bg-purple-500 rounded-full flex flex-1 justify-center items-center py-6 px-12 scale-95 transition duration-1000 ease-in-out hover:scale-100" htmlType="submit">
-                                    <span className="text-white text-xl font-bold">Entrar</span>
-                                </Button>
+                                    <Button className="bg-purple-500 rounded-full flex flex-1 justify-center items-center py-6 px-12 scale-95 transition duration-1000 ease-in-out hover:scale-100" htmlType="submit">
+                                        <span className="text-white text-xl font-bold">Entrar</span>
+                                    </Button>
 
-                            </Form.Item>
-                            <div className=" text-zinc-400 placeholder:my-1 text-center">
-                                <div>
-                                    <span>Não possui conta? </span>
-                                    <a className=" underline hover:text-zinc-500" href="/cadastrar-se">Cadastrar-se</a>
+                                </Form.Item>
+                                <div className=" text-zinc-400 placeholder:my-1 text-center">
+                                    <div>
+                                        <span>Não possui conta? </span>
+                                        <a className=" underline hover:text-zinc-500" href="/cadastrar-se">Cadastrar-se</a>
+                                    </div>
+                                    <div>
+                                        <a className=" underline hover:text-zinc-500" href="#">Esqueceu a senha?</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a className=" underline hover:text-zinc-500" href="#">Esqueceu a senha?</a>
-                                </div>
-                            </div>
-                        </Form>
+                            </Form>
+
+                        </ConfigProvider>
                     </div>
                 </main>
 
