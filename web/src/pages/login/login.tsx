@@ -1,8 +1,8 @@
 import { Button, Checkbox, ConfigProvider, Form, Input } from "antd"
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
+import useUsuarioContext from "../dashboard/components/context/usuario-context"
 
 interface LoginProps {
     username: string,
@@ -14,25 +14,25 @@ export function Login() {
 
     const [login, setLogin] = useState<LoginProps | undefined>(undefined);
 
+    const {usuario, setUsuario} = useUsuarioContext()
+
     const onFinish = (values: LoginProps) => {
         setLogin(values)
         // TODO: validar login
 
-        const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
+        //const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
 
-
-        const usuario_query = async () => {
-            await axios({
-                method: "GET",
-                url: url_query,
-            }
-            ).then(response => {
-                console.log(response)
-            }).catch(error => {
-                console.log(error)
-            })
-            console.log(usuario_query)
+        const usuario_teste = {
+            url_avatar: "https://stickerly.pstatic.net/sticker_pack/Hso2F5c5wKCuuSvdsNTvRA/P1877I/2/ac6d2317-ad9b-48a1-ad11-7b7a927df50b.png",
+            nome: "matheus",
+            username: "admin",
+            password: '123'
         }
+
+        setUsuario(usuario_teste)
+
+        console.log(usuario)
+
     }
 
 

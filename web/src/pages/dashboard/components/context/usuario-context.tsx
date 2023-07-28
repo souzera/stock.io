@@ -1,13 +1,13 @@
 import { createContext, useContext, useState } from "react";
 
-const UsuarioContext = createContext<any>({})
+const UsuarioContext = createContext<any|undefined>(undefined)
 
 export function UsuarioContextProvider({children}:any){
 
-    const [usuario, _setUsuario] = useState<any|undefined>(undefined);
+    const [usuario, _setUsuario] = useState();
 
-    const setUsuario = (usuario:any) => {
-        _setUsuario(usuario)
+    const setUsuario = (_usuario:any) => {
+        _setUsuario(_usuario)
     }
 
     return (
@@ -19,6 +19,6 @@ export function UsuarioContextProvider({children}:any){
     )
 }
 
-export function useUsuarioContext(){
+export default function useUsuarioContext(){
     return useContext(UsuarioContext)
 }
