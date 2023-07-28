@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 
 class Usuario(models.Model):
-    url_avatar = models.CharField()
+    url_avatar = models.CharField(default='https://cdnb.artstation.com/p/assets/images/images/062/727/381/large/mooncolony-mooncolony-clashroyale-boot-camp-archer-key-art.jpg?1683807488')
     nome = models.CharField()
     username = models.CharField(unique=True)
     password = models.CharField()

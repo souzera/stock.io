@@ -28,7 +28,8 @@ def find_username(request, username):
     from .models import Usuario
     usuario = Usuario.objects.get(username=username)
     data = usuario.get_data_dict()
-    return  JsonResponse({'data':data})
+    return JsonResponse({'data': data})
+
 
 def logging(resquest):
     from .models import Usuario

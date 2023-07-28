@@ -1,9 +1,10 @@
 import { Button, Checkbox, ConfigProvider, Form, Input } from "antd"
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 
-interface LoginProps{
+interface LoginProps {
     username: string,
     password: string,
     remember: boolean
@@ -11,14 +12,29 @@ interface LoginProps{
 
 export function Login() {
 
-    const [ login, setLogin ] = useState<LoginProps|undefined>(undefined);
+    const [login, setLogin] = useState<LoginProps | undefined>(undefined);
 
     const onFinish = (values: LoginProps) => {
-        console.log('Sucess: ', values)
         setLogin(values)
-
         // TODO: validar login
+
+        const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
+
+
+        const usuario_query = async () => {
+            await axios({
+                method: "GET",
+                url: url_query,
+            }
+            ).then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.log(error)
+            })
+            console.log(usuario_query)
+        }
     }
+
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo)
