@@ -37,5 +37,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <UsuarioContextProvider>
       <RouterProvider router={router} />
     </UsuarioContextProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
