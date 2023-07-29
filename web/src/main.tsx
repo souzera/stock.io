@@ -10,7 +10,7 @@ import {
 import { Home } from './pages/home/home.tsx'
 import { Login } from './pages/login/login.tsx'
 import { CadastroUsuario } from './pages/cadastro/cadastro-usuario.tsx'
-import { UsuarioContextProvider } from './pages/dashboard/components/context/usuario-context.tsx'
+import { UsuarioContextProvider } from './components/context/usuario-context.tsx'
 import { Dashboard } from './pages/dashboard/dashboard.tsx'
 
 const router = createBrowserRouter([
@@ -20,14 +20,14 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login />
+    element: <Login />,
   },
   {
     path: '/cadastrar-se',
     element: <CadastroUsuario />
   },
   {
-    path: '/dashboard',
+    path: `/dashboard`,
     element: <Dashboard />
   }
 ])

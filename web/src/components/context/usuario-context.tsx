@@ -10,6 +10,8 @@ export function UsuarioContextProvider({children}:any){
         _setUsuario(_usuario)
     }
 
+    console.log(usuario)
+
     return (
         <>
             <UsuarioContext.Provider value={{usuario, setUsuario}}>

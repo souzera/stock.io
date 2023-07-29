@@ -1,8 +1,8 @@
 import { Button, Checkbox, ConfigProvider, Form, Input } from "antd"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
-import useUsuarioContext from "../dashboard/components/context/usuario-context"
+import useUsuarioContext from "../../components/context/usuario-context"
 import axios from "axios"
 import { redirect } from "react-router-dom";
 
@@ -17,8 +17,6 @@ export function Login() {
     const [login, setLogin] = useState<LoginProps>({ username: '', password: '', remember: true });
 
     const { usuario, setUsuario } = useUsuarioContext()
-
-
 
     const onFinish = () => {
         // TODO: validar login
@@ -42,6 +40,17 @@ export function Login() {
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo)
     }
+
+
+    useEffect(()=>{
+        console.log(usuario)
+        if (usuario !== undefined) {
+            console.log('O objeto não é undefined.');
+            location.href = '/dashboard'
+        } else {
+            console.log('O objeto é undefined.');
+        }
+    }, [usuario])
 
     return (
         <>

@@ -1,17 +1,20 @@
-import useUsuarioContext from "./components/context/usuario-context"
+import useUsuarioContext from "../../components/context/usuario-context"
+import { DashboardContent } from "./dashboard-content"
 
-export function Dashboard(){
+export function Dashboard() {
 
     const { usuario } = useUsuarioContext()
+
     console.log(usuario)
 
     return (
         <>
-        
-        <div className="text-2xl">
-            {usuario.nome}
-        </div>
-
+            <div>
+                {usuario && <DashboardContent 
+                    nome={usuario.nome} 
+                    username={usuario.username} 
+                    url_avatar={usuario.url_avatar}/>}
+            </div>
         </>
     )
 }
