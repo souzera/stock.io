@@ -1,4 +1,6 @@
 export function Home() {
+
+    
     return (
         <div className="flex flex-col">
             <header className="flex flex-1 mb-3 gap-5 justify-between max-md:justify-center" >

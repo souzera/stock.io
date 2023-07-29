@@ -3,6 +3,8 @@ import { useState } from "react"
 import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 import useUsuarioContext from "../dashboard/components/context/usuario-context"
+import axios from "axios"
+import { redirect } from "react-router-dom";
 
 interface LoginProps {
     username: string,
@@ -12,26 +14,27 @@ interface LoginProps {
 
 export function Login() {
 
-    const [login, setLogin] = useState<LoginProps | undefined>(undefined);
+    const [login, setLogin] = useState<LoginProps>({ username: '', password: '', remember: true });
 
-    const {usuario, setUsuario} = useUsuarioContext()
+    const { usuario, setUsuario } = useUsuarioContext()
 
-    const onFinish = (values: LoginProps) => {
-        setLogin(values)
+
+
+    const onFinish = () => {
         // TODO: validar login
 
-        //const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
+        const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
 
-        const usuario_teste = {
-            url_avatar: "https://stickerly.pstatic.net/sticker_pack/Hso2F5c5wKCuuSvdsNTvRA/P1877I/2/ac6d2317-ad9b-48a1-ad11-7b7a927df50b.png",
-            nome: "matheus",
-            username: "admin",
-            password: '123'
-        }
-
-        setUsuario(usuario_teste)
-
-        console.log(usuario)
+        axios(
+            {
+                method: "GET",
+                url: url_query,
+            }
+        ).then(response => {
+            if (login.password == response.data.data.password) {
+                setUsuario(response.data.data)
+            }
+        })
 
     }
 
@@ -99,6 +102,14 @@ export function Login() {
                                         prefix={<BiSolidUser className='text-zinc-300 text-xl' />}
                                         placeholder="username"
                                         size="large"
+                                        onChange={(values) => {
+                                            const updateValues = {
+                                                username: values.target.value,
+                                                password: login.password,
+                                                remember: login.remember
+                                            }
+                                            setLogin(updateValues)
+                                        }}
                                     />
                                 </Form.Item>
 
@@ -118,6 +129,15 @@ export function Login() {
                                         prefix={<IoIosKey className='text-zinc-300 text-xl' />}
                                         placeholder="senha"
                                         size="large"
+                                        onChange={(values) => {
+                                            const updateValues = {
+                                                username: login.username,
+                                                password: values.target.value,
+                                                remember: login.remember
+                                            }
+
+                                            setLogin(updateValues)
+                                        }}
                                     />
 
                                 </Form.Item>
@@ -133,7 +153,17 @@ export function Login() {
                                     }
                                 >
 
-                                    <Checkbox>Lembra-me</Checkbox>
+                                    <Checkbox
+                                        onChange={(values) => {
+                                            const updateValues = {
+                                                username: login.username,
+                                                password: login.password,
+                                                remember: values.target.checked
+                                            }
+
+                                            setLogin(updateValues)
+                                        }}
+                                    >Lembra-me</Checkbox>
 
                                 </Form.Item>
 

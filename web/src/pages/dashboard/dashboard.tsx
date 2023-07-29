@@ -1,4 +1,4 @@
-import { useUsuarioContext } from "./components/context/usuario-context"
+import useUsuarioContext from "./components/context/usuario-context"
 
 export function Dashboard(){
 
