@@ -4,7 +4,8 @@ import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 import useUsuarioContext from "../../components/context/usuario-context"
 import axios from "axios"
-import { redirect } from "react-router-dom";
+import { redirect } from "react-router-dom"
+
 
 interface LoginProps {
     username: string,
@@ -33,7 +34,6 @@ export function Login() {
                 setUsuario(response.data.data)
             }
         })
-
     }
 
 
@@ -46,6 +46,7 @@ export function Login() {
         console.log(usuario)
         if (usuario !== undefined) {
             console.log('O objeto não é undefined.');
+            console.log(usuario)
             location.href = '/dashboard'
         } else {
             console.log('O objeto é undefined.');
