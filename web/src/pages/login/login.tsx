@@ -4,7 +4,7 @@ import { BiSolidUser } from 'react-icons/bi'
 import { IoIosKey } from 'react-icons/io'
 import useUsuarioContext from "../../components/context/usuario-context"
 import axios from "axios"
-import { redirect } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 interface LoginProps {
@@ -17,7 +17,11 @@ export function Login() {
 
     const [login, setLogin] = useState<LoginProps>({ username: '', password: '', remember: true });
 
+    const navigate = useNavigate();
+
     const { usuario, setUsuario } = useUsuarioContext()
+
+    console.log("Contexto:", usuario)
 
     const onFinish = () => {
         // TODO: validar login
@@ -42,12 +46,9 @@ export function Login() {
     }
 
 
-    useEffect(()=>{
-        console.log(usuario)
+    useEffect(() => {
         if (usuario !== undefined) {
-            console.log('O objeto não é undefined.');
-            console.log(usuario)
-            location.href = '/dashboard'
+            navigate('/dashboard')
         } else {
             console.log('O objeto é undefined.');
         }

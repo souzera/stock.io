@@ -3,23 +3,25 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 
 import {
-  BrowserRouter,
   createBrowserRouter,
-  Route,
   RouterProvider,
-  Routes,
 } from "react-router-dom"
 
 import { Home } from './pages/home/home.tsx'
 import { Login } from './pages/login/login.tsx'
 import { CadastroUsuario } from './pages/cadastro/cadastro-usuario.tsx'
-import useUsuarioContext, { UsuarioContextProvider } from './components/context/usuario-context.tsx'
+import { UsuarioContextProvider } from './components/context/usuario-context.tsx'
 import { Dashboard } from './pages/dashboard/dashboard.tsx'
-import Produto from './pages/produto/produtos.tsx'
+import { ConfigProvider } from 'antd'
+import ptBR from 'antd/es/locale/pt_BR';
 import Produtos from './pages/produto/produtos.tsx'
+import Settings from './pages/usuario/settings.tsx'
 
 //const {usuario} = useUsuarioContext()
 
+const primaryColor = '#1890ff';
+
+//todo: rotas publicas e privadas
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,18 +37,41 @@ const router = createBrowserRouter([
   },
   {
     path: `/dashboard`,
-    element: <Dashboard username={'matheus'} />
+    element: <Dashboard/>,
   },
   {
     path: '/produtos',
-    element: <Produtos/>
-  }
+    element: <Produtos />
+  },
+  {
+    path: '/fornecedores',
+    element: <div>fornecedores</div>
+  },
+  {
+    path: '/clientes',
+    element: <div>clientes</div>
+  },
+  {
+    path: '/settings',
+    element: <Settings/>
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <UsuarioContextProvider>
-      <RouterProvider router={router} />
-    </UsuarioContextProvider>
+    <ConfigProvider
+      locale={ptBR}
+      theme={
+        {
+          token: {
+            colorPrimary:"#A855F7"
+          }
+        }
+      }
+    >
+      <UsuarioContextProvider>
+        <RouterProvider router={router} />
+      </UsuarioContextProvider>
+    </ConfigProvider>
   </React.StrictMode>
 )
