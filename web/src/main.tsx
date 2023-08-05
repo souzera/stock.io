@@ -64,7 +64,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       theme={
         {
           token: {
-            colorPrimary:"#A855F7"
+            colorPrimary:"#A855F7",
+          },
+          components:{
+            Button:{
+              borderRadius:100,
+            },
           }
         }
       }

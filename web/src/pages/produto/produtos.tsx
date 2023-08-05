@@ -2,12 +2,15 @@ import axios from "axios";
 import AvatarBadge from "../../components/avatar/avatar";
 import { Sidebar } from "../../components/sidebar/sidebar";
 import { useEffect, useState } from "react";
-import { Usuario } from "../../types/usuario";
-import { Table } from "antd";
+import { Button, Form, Input, InputNumber, Modal, Select, SelectProps, Spin, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Produto } from "../../types/produto";
 import { BiSolidPencil } from "react-icons/bi";
 import useUsuarioContext from "../../components/context/usuario-context";
+import { IoMdAddCircle } from "react-icons/io";
+import { MdDescription } from "react-icons/md";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { FaSearch } from "react-icons/fa";
 
 //todo: usuario context
 
@@ -58,6 +61,44 @@ export default function Produtos() {
         }
     ];
 
+
+    // MODAL CONFIGS
+
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+
+    const showModal = () => {
+        setOpen(true);
+    };
+
+    const handleOk = () => {
+        setModalText('The modal will be closed after two seconds');
+        setConfirmLoading(true);
+        setTimeout(() => {
+            setOpen(false);
+            setConfirmLoading(false);
+        }, 2000);
+    };
+
+    const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setOpen(false);
+    };
+
+    const options: SelectProps['options'] = [];
+
+    for (let i = 10; i < 36; i++) {
+        options.push({
+            value: i.toString(36) + i,
+            label: i.toString(36) + i,
+        });
+    }
+
+    const handleChange = (value: string) => {
+        console.log(`selected ${value}`);
+    };
+
     return (
         <>
             <div>
@@ -66,7 +107,7 @@ export default function Produtos() {
                         <Sidebar color={"white"} bgColor={"purple"} />
                     </aside>
 
-                    <main className="flex flex-col flex-1 p-8">
+                    <main className="flex flex-col flex-1 p-8 gap-8">
                         <div >
 
                             <AvatarBadge
@@ -77,8 +118,17 @@ export default function Produtos() {
 
                         </div>
 
-                        <div className="flex flex-1 flex-col">
-                            <h1 className="text-3xl font-bold mb-3">Produtos</h1>
+                        <div className="flex flex-1 flex-col gap-3">
+                            <div className="flex items-center justify-between">
+                                <h1 className="text-3xl font-bold mb-3">Produtos</h1>
+
+                                <button onClick={showModal}>
+                                    <div className="flex text-white font-bold scale-95 bg-purple-500 hover:scale-100 transition duration-700 ease-in-out hover:bg-purple-800 px-4 py-2 rounded-full gap-x-2 items-center">
+                                        <IoMdAddCircle className="transition ease-in-out duration-1000 hover:rotate-180" size={24} />
+                                        Cadastrar Produto
+                                    </div>
+                                </button>
+                            </div>
 
                             <div className="flex flex-1 h-full">
                                 <Table className="w-full" dataSource={produtos} columns={columns} pagination={{ pageSize: 5 }} />
@@ -87,6 +137,72 @@ export default function Produtos() {
                     </main>
                 </div>
             </div>
+
+            <Modal
+                title="Cadastrar Produto"
+                open={open}
+                onOk={handleOk}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Cancelar
+                    </Button>,
+                    <Button className="bg-purple-500 text-white font-bold" key="submit" onClick={handleOk}>
+                        Confirmar
+                    </Button>,
+                ]}
+            >
+                <Form className="">
+
+                    <div className="flex justify-start gap-4">
+
+                        <Form.Item className="flex">
+                            <span className="text-lg text-zinc-400 font-bold pl-3">Nome*</span>
+                            <Input
+                                className="text-zinc-300 mt-1"
+                                prefix={<MdDescription size={24} />}
+                                style={{ width: "100%" }}
+                                placeholder="nome"
+                                size="large"
+                            />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <div className="flex flex-col">
+                                <span className="text-lg text-zinc-400 font-bold pl-3">Preço*</span>
+                                <InputNumber
+                                    className="text-zinc-300 mt-1"
+                                    prefix={<RiMoneyDollarCircleFill size={24} />}
+                                    placeholder="preco"
+                                    size="large"
+                                    style={{ width: "100%" }}
+                                />
+                            </div>
+                        </Form.Item>
+
+
+
+                    </div>
+
+                    <Form.Item>
+                        <span className="text-lg text-zinc-400 font-bold pl-3">Fornecedor*</span>
+                        <Select
+                            className="w-full mt-1"
+                            suffixIcon={<FaSearch size={16} />}
+                            mode="tags"
+                            style={{ width: "100%" }}
+                            onChange={handleChange}
+                            tokenSeparators={[',']}
+                            options={options}
+                            placeholder="Buscar pelo fornecedor . . ."
+                            size="large"
+                        />
+                    </Form.Item>
+
+                </Form>
+
+            </Modal>
         </>
     )
 }
