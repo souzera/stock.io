@@ -1,5 +1,7 @@
 import { Dropdown, MenuProps, Space, message } from "antd";
 import { AiFillCaretDown } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import useUsuarioContext from "../context/usuario-context";
 
 interface AvatarBadge {
     nome:string,
@@ -9,18 +11,22 @@ interface AvatarBadge {
 
 export default function AvatarBadge({nome, username, url_avatar}:AvatarBadge){
 
-    const onClick: MenuProps['onClick'] = ({ key }) => {
-        message.info(`Click on item ${key}`);
-    };
+    const navigate = useNavigate()
+    const {setUsuario} = useUsuarioContext()
 
     const items: MenuProps['items'] = [
         {
             label: 'Configurações',
             key: '1',
+            onClick: () => navigate('/settings')
         },
         {
             label: 'Sair',
             key: '2',
+            onClick: () =>{
+                setUsuario(undefined)
+                navigate('/login')
+            }
         },
     ];
 
@@ -35,7 +41,7 @@ export default function AvatarBadge({nome, username, url_avatar}:AvatarBadge){
                             <div className="h-full">
                                 <img className=" flex rounded-full h-full" src={url_avatar} alt="avatar do usuario" />
                             </div>
-                            <Dropdown menu={{ items, onClick }}>
+                            <Dropdown menu={{ items }}>
                                 <a onClick={(e) => e.preventDefault()}>
                                     <Space>
                                         <AiFillCaretDown />
