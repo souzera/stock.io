@@ -11,19 +11,24 @@ import { IoMdAddCircle } from "react-icons/io";
 import { MdDescription } from "react-icons/md";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
+import { Fornecedor } from "../../types/fornecedor";
 
 //todo: usuario context
 
 export default function Produtos() {
 
     const [produtos, setProdutos] = useState<Produto[]>([])
+    const [fornecedores, setFornecedores] = useState<Fornecedor[]>([])
 
     const { usuario } = useUsuarioContext()
-    console.log(usuario)
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/produtos').then(response => {
             setProdutos(response.data.data)
+        })
+
+        axios.get('http://127.0.0.1:8000/api/fornecedores').then(response => {
+            setFornecedores(response.data.data)
         })
     }, [])
 
@@ -44,19 +49,19 @@ export default function Produtos() {
             title: 'Preço',
             dataIndex: 'preco',
             key: 'preco',
-            render: (text) => <div>R$ <span>{text}</span></div>
+            render: (value:number) => <div>R$ <span>{value.toFixed(2)}</span></div>
         },
         {
             title: 'Fornecedor',
             dataIndex: 'fornecedor',
-            key: 'forncedor',
+            key: 'fornecedor',
             render: (text) => <a href="#" className="text-purple-500 hover:text-purple-800">{text}</a>
         },
         {
             title: '',
             dataIndex: "acoes",
             key: 'acoes',
-            render: (text) => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800" /></a>
+            render: (text) => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800 hover:scale-110 transition duration-1000 ease-in-out" /></a>
 
         }
     ];
@@ -88,12 +93,12 @@ export default function Produtos() {
 
     const options: SelectProps['options'] = [];
 
-    for (let i = 10; i < 36; i++) {
+    fornecedores.forEach((element)=>{
         options.push({
-            value: i.toString(36) + i,
-            label: i.toString(36) + i,
-        });
-    }
+            value:element.nome,
+            label:element.nome
+        })
+    })
 
     const handleChange = (value: string) => {
         console.log(`selected ${value}`);
@@ -139,7 +144,6 @@ export default function Produtos() {
             </div>
 
             <Modal
-                title="Cadastrar Produto"
                 open={open}
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
@@ -153,6 +157,8 @@ export default function Produtos() {
                     </Button>,
                 ]}
             >
+                <h1 className="text-2xl mb-4 font-bold ">Cadastrar Produto </h1>
+
                 <Form className="">
 
                     <div className="flex justify-start gap-4">
@@ -177,6 +183,7 @@ export default function Produtos() {
                                     placeholder="preco"
                                     size="large"
                                     style={{ width: "100%" }}
+                                    decimalSeparator=","
                                 />
                             </div>
                         </Form.Item>
@@ -188,9 +195,9 @@ export default function Produtos() {
                     <Form.Item>
                         <span className="text-lg text-zinc-400 font-bold pl-3">Fornecedor*</span>
                         <Select
+                            showSearch 
                             className="w-full mt-1"
                             suffixIcon={<FaSearch size={16} />}
-                            mode="tags"
                             style={{ width: "100%" }}
                             onChange={handleChange}
                             tokenSeparators={[',']}

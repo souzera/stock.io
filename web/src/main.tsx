@@ -16,6 +16,7 @@ import { ConfigProvider } from 'antd'
 import ptBR from 'antd/es/locale/pt_BR';
 import Produtos from './pages/produto/produtos.tsx'
 import Settings from './pages/usuario/settings.tsx'
+import Fornecedores from './pages/fornecedor/fornecedores.tsx'
 
 //const {usuario} = useUsuarioContext()
 
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/fornecedores',
-    element: <div>fornecedores</div>
+    element: <Fornecedores/>
   },
   {
     path: '/clientes',
