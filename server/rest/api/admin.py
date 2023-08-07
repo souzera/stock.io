@@ -7,5 +7,6 @@ from .models import *
 admin.site.register(Usuario)
 admin.site.register(Fornecedor)
 admin.site.register(Produto)
+admin.site.register(Cliente)
 admin.site.register(Compra)
 admin.site.register(CompraProduto)

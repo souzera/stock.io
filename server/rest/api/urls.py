@@ -9,8 +9,10 @@ urlpatterns = [
     path('logging', views.logging, name='logging',),
     path('<int:fornecedor_id>/fornecedor', views.details_fornecedor, name='fornecedor_details'),
     path('fornecedores', views.results_fornecedor, name='fornecedores'),
+    path('fornecedor/<str:cnpj>', views.find_fornecedor, name='find_fornecedor'),
     path('<int:produto_id>/produto', views.details_produto, name='produto_details'),
     path('produtos', views.results_produto, name='produtos'),
     path('add-produto', views.add_produto,name='add-produto'),
+    path('clientes', views.results_client, name='clientes'),
 ]
 

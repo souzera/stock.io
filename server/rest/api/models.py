@@ -24,12 +24,14 @@ class Usuario(models.Model):
 
 class Fornecedor(models.Model):
     nome = models.CharField(max_length=256)
+    cnpj = models.CharField(max_length=256, unique=True)
     endereco = models.CharField(max_length=256)
     contato = models.CharField(max_length=128)
 
     def get_data_dict(self):
         return {
             'nome': self.nome,
+            'cnpj':self.cnpj,
             'endereco': self.endereco,
             'contato': self.contato
         }
@@ -46,21 +48,45 @@ class Produto(models.Model):
         return {
             'nome' : self.nome,
             'preco' : self.preco,
-            'fornecedor': str(self.fornecedor)
+            'fornecedor': self.fornecedor.get_data_dict()
+        }
+
+    def __str__(self):
+        return self.nome
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=256)
+    cpf = models.CharField(max_length=256, unique=True)
+    contato = models.CharField(max_length=256)
+    endereco = models.CharField(max_length=256)
+
+    def get_data_dict(self):
+        return {
+            'nome':self.nome,
+            'cpf': self.cpf,
+            'contato':self.contato,
+            'endereco':self.endereco
         }
 
     def __str__(self):
         return self.nome
 
 class Compra(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,null=True)
     data_compra = models.DateField(auto_now=True)
 
     def get_data_dict(self):
         return {'data_compra': self.data_compra}
 
+    def __str__(self):
+        if cliente != None:
+            return self.cliente
+        return f'Venda a Vista {self.data_compra}'
+
 class CompraProduto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 
     def get_data_dict(self):
         return {

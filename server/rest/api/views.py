@@ -64,6 +64,12 @@ def results_fornecedor(request):
     data = [fornecedor.get_data_dict() for fornecedor in fornecedor_list]
     return JsonResponse({'data':data})
 
+def find_fornecedor(request, cnpj):
+    from .models import Fornecedor
+    fornecedor = Fornecedor.objects.get(cnpj=cnpj)
+    data = fornecedor.get_data_dict()
+    return JsonResponse({'data':data})
+
 
 ## Produto
 
@@ -87,9 +93,10 @@ def add_produto(request):
     if request.method == 'POST':
         nome = request.POST['nome']
         preco = request.POST['preco']
-        fornecedor_id = request.POST['fornecedor_id']
+        #cnpj
+        resquest_fornecedor = request.POST['fornecedor_cnpj']
 
-        fornecedor = Fornecedor.objects.get(id=fornecedor_id);
+        fornecedor = Fornecedor.objects.get(cnpj=request_fornecedor.cnpj);
         print(fornecedor)
 
         produto = Produto(
@@ -103,3 +110,12 @@ def add_produto(request):
         return JsonResponse({'message':'Produto adicionado'}, status=200)
     else:
         return JsonResponse({'message':'Não foi possível adicionar o produto'}, status=405)
+
+
+# Clientes
+
+def results_client(request):
+    from .models import Cliente
+    clientes_list = Cliente.objects.order_by("nome")
+    data = [client.get_data_dict() for client in clientes_list]
+    return JsonResponse({'data':data})

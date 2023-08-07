@@ -49,7 +49,7 @@ export default function Produtos() {
             title: 'Preço',
             dataIndex: 'preco',
             key: 'preco',
-            render: (value:number) => <div>R$ <span>{value.toFixed(2)}</span></div>
+            render: (value: number) => <div>R$ <span>{value.toFixed(2)}</span></div>
         },
         {
             title: 'Fornecedor',
@@ -71,38 +71,69 @@ export default function Produtos() {
 
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
+
+    const [newProduto, setNewProduto] = useState<Produto>(
+        { nome: "", preco: 0 }
+    )
+
+    const preco = (values: number) => {
+        console.log(values)
+        setNewProduto({
+            nome: newProduto?.nome,
+            preco: values,
+            fornecedor: newProduto?.fornecedor
+        })
+    }
+
+    const [fornecedorQuery, setFornecedorQuery] = useState<Fornecedor | undefined>(undefined)
+
+    const [cnpj, setCnpj] = useState('')
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/api/fornecedor/${cnpj}`).then(response => {
+            setFornecedorQuery(response.data.data)
+        })
+    }, [cnpj])
 
     const showModal = () => {
         setOpen(true);
     };
 
-    const handleOk = () => {
-        setModalText('The modal will be closed after two seconds');
-        setConfirmLoading(true);
-        setTimeout(() => {
-            setOpen(false);
-            setConfirmLoading(false);
-        }, 2000);
+    const handleOk = async () => {
+        await axios({
+            method: "POST",
+            url: 'http://127.0.0.1:8000/api/add-produto',
+            data: {
+                nome: newProduto.nome,
+                preco: newProduto.preco,
+                fornecedor_cnpj: fornecedorQuery?.cnpj
+            }, 
+            headers:{
+                "Content-Type":'application/json'
+            } 
+        }).then(response => {
+            console.log(response.data)
+        }).catch(err => {
+            console.log(err)
+        })
     };
 
     const handleCancel = () => {
         console.log('Clicked cancel button');
         setOpen(false);
     };
-
+    
+    const handleChange = () => {};
+    
     const options: SelectProps['options'] = [];
 
-    fornecedores.forEach((element)=>{
+    fornecedores.forEach((element) => {
         options.push({
-            value:element.nome,
-            label:element.nome
+            value: element.cnpj,
+            label: element.nome,
         })
     })
 
-    const handleChange = (value: string) => {
-        console.log(`selected ${value}`);
-    };
 
     return (
         <>
@@ -159,11 +190,12 @@ export default function Produtos() {
             >
                 <h1 className="text-2xl mb-4 font-bold ">Cadastrar Produto </h1>
 
-                <Form className="">
+                <Form >
 
                     <div className="flex justify-start gap-4">
 
-                        <Form.Item className="flex">
+                        <Form.Item className="flex"
+                        >
                             <span className="text-lg text-zinc-400 font-bold pl-3">Nome*</span>
                             <Input
                                 className="text-zinc-300 mt-1"
@@ -171,6 +203,13 @@ export default function Produtos() {
                                 style={{ width: "100%" }}
                                 placeholder="nome"
                                 size="large"
+                                onChange={(values) => {
+                                    setNewProduto({
+                                        nome: values.target.value,
+                                        preco: newProduto?.preco,
+                                        fornecedor: newProduto?.fornecedor
+                                    })
+                                }}
                             />
                         </Form.Item>
 
@@ -184,18 +223,19 @@ export default function Produtos() {
                                     size="large"
                                     style={{ width: "100%" }}
                                     decimalSeparator=","
+                                    onChange={(values: any) => {
+                                        preco(values)
+                                    }}
                                 />
                             </div>
                         </Form.Item>
-
-
 
                     </div>
 
                     <Form.Item>
                         <span className="text-lg text-zinc-400 font-bold pl-3">Fornecedor*</span>
                         <Select
-                            showSearch 
+                            showSearch
                             className="w-full mt-1"
                             suffixIcon={<FaSearch size={16} />}
                             style={{ width: "100%" }}
@@ -204,6 +244,9 @@ export default function Produtos() {
                             options={options}
                             placeholder="Buscar pelo fornecedor . . ."
                             size="large"
+                            onSelect={(values: any) => {
+                                setCnpj(values)
+                            }}
                         />
                     </Form.Item>
 
