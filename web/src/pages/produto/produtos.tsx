@@ -55,7 +55,7 @@ export default function Produtos() {
             title: 'Fornecedor',
             dataIndex: 'fornecedor',
             key: 'fornecedor',
-            render: (text) => <a href="#" className="text-purple-500 hover:text-purple-800">{text}</a>
+            render: (values) => <a href="#" className="text-purple-500 hover:text-purple-800">{values.nome}</a>
         },
         {
             title: '',
@@ -73,7 +73,7 @@ export default function Produtos() {
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     const [newProduto, setNewProduto] = useState<Produto>(
-        { nome: "", preco: 0 }
+        { nome: "", preco: 0 , fornecedor:undefined}
     )
 
     const preco = (values: number) => {
@@ -100,11 +100,12 @@ export default function Produtos() {
     };
 
     const handleOk = async () => {
+        
         await axios({
             method: "POST",
             url: 'http://127.0.0.1:8000/api/add-produto',
             data: {
-                nome: newProduto.nome,
+                'nome-produto': "newProduto.nome",
                 preco: newProduto.preco,
                 fornecedor_cnpj: fornecedorQuery?.cnpj
             }, 
