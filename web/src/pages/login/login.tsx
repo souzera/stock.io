@@ -21,10 +21,8 @@ export function Login() {
 
     const { usuario, setUsuario } = useUsuarioContext()
 
-    console.log("Contexto:", usuario)
 
     const onFinish = () => {
-        // TODO: validar login
 
         const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
 

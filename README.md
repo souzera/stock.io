@@ -14,8 +14,8 @@ Stock.io é uma aplicação web de controle de estoque que permite gerenciar fac
 
 | Cor               | Hexadecimal                                                |
 | ----------------- | ---------------------------------------------------------------- |
-| Verde Claro       | ![#13f287](https://via.placeholder.com/10/13f287?text=+) #13f287 |
-| Verde Escuro       | ![#0C9453](https://via.placeholder.com/10/0C9453?text=+) #0C9453 |
+| Roxo Primário       | ![#a855f7](https://via.placeholder.com/10/a855f7?text=+) ##a855f7 |
+| Roxo Secundário      | ![#5b21b6](https://via.placeholder.com/10/5b21b6?text=+) #5b21b6 |
 | Preto       | ![#0d0d0d](https://via.placeholder.com/10/0d0d0d?text=+) #0d0d0d |
 | Branco      | ![#f5f5f5](https://via.placeholder.com/10/f5f5f5?text=+) #f5f5f5 |
 
