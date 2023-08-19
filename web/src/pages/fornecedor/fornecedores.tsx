@@ -18,8 +18,8 @@ export default function Fornecedores() {
     const [fornecedores, setFornecedores] = useState<Fornecedor[]>([])
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/fornecedores').then(response => {
-            setFornecedores(response.data.data)
+        axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
+            setFornecedores(response.data)
         })
     }, [])
 
@@ -43,7 +43,7 @@ export default function Fornecedores() {
             title: '',
             dataIndex: "acoes",
             key: 'acoes',
-            render: (text) => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800 hover:scale-110 transition duration-1000 ease-in-out" /></a>
+            render: () => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800 hover:scale-110 transition duration-1000 ease-in-out" /></a>
 
         }
     ];
@@ -53,16 +53,36 @@ export default function Fornecedores() {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
+    const [nome, setNome] = useState('')
+    const [cnpj, setCnpj] = useState('')
+    const [endereco, setEndereco] = useState('')
+    const [contato, setContato] = useState('')
+
     const showModal = () => {
         setOpen(true)
     }
 
-    const handleOk = () => {
+    const handleOk = async () => {
 
+        const fornecedor = {
+            nome: nome,
+            cnpj: cnpj,
+            endereco: endereco,
+            contato: contato
+        }
+
+        await axios.post('http://127.0.0.1:8000/fornecedores/', fornecedor).then(response => console.log(response))
+
+        axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
+            setFornecedores(response.data)
+        })
+
+        setOpen(false)
     }
 
     const handleCancel = () => {
-
+        console.log('Clicked cancel button');
+        setOpen(false);
     }
 
     return (
@@ -122,6 +142,7 @@ export default function Fornecedores() {
                                 placeholder="nome"
                                 size="large"
                                 onChange={(values) => {
+                                    setNome(values.target.value)
                                     console.log(values.target.value)
                                 }}
                             />
@@ -139,6 +160,7 @@ export default function Fornecedores() {
                                     style={{ width: "100%" }}
                                     size="large"
                                     onChange={(values) => {
+                                        setContato(values.target.value)
                                         console.log(values.target.value)
                                     }} />
                             </Form.Item>
@@ -155,6 +177,7 @@ export default function Fornecedores() {
                                     size="large"
                                     onChange={(values) => {
                                         console.log(values.target.value)
+                                        setCnpj(values.target.value)
                                     }}
                                 />
                             </Form.Item>
@@ -172,6 +195,7 @@ export default function Fornecedores() {
                                 size="large"
                                 onChange={(values) => {
                                     console.log(values.target.value)
+                                    setEndereco(values.target.value)
                                 }}
                             />
                         </Form.Item>

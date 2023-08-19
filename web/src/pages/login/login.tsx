@@ -24,12 +24,20 @@ export function Login() {
 
     const onFinish = () => {
 
-        const url_query = `http://127.0.0.1:8000/api/user/${login?.username}`
+        //const url_query = `http://127.0.0.1:8000/logging/username/${login?.username}`
+        const url_query = `http://127.0.0.1:8000/usuarios/signin/`
+
+        console.log(login)
 
         axios(
             {
-                method: "GET",
+                method: "POST",
                 url: url_query,
+                data:{
+                    "username": login.username,
+                    "password": login.password,
+                    "remenber": login.remember
+                }
             }
         ).then(response => {
             if (login.password == response.data.data.password) {

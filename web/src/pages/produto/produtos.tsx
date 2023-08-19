@@ -23,18 +23,18 @@ export default function Produtos() {
     const { usuario } = useUsuarioContext()
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/produtos').then(response => {
-            setProdutos(response.data.data)
+        axios.get('http://127.0.0.1:8000/produtos').then(response => {
+            setProdutos(response.data)
         })
 
-        axios.get('http://127.0.0.1:8000/api/fornecedores').then(response => {
-            setFornecedores(response.data.data)
+        axios.get('http://127.0.0.1:8000/fornecedores').then(response => {
+            setFornecedores(response.data)
         })
     }, [])
 
     const url_default = () => {
         if (usuario?.url_avatar == undefined) {
-            return "https://img.quizur.com/f/img64624f77d49397.45271659.jpg?lastEdited=1684164477"
+            return "https://pbs.twimg.com/media/FpR2DJCaUAAgNDY.jpg"
         }
         return usuario.url_avatar
     }
@@ -55,13 +55,16 @@ export default function Produtos() {
             title: 'Fornecedor',
             dataIndex: 'fornecedor',
             key: 'fornecedor',
-            render: (values) => <a href="#" className="text-purple-500 hover:text-purple-800">{values.nome}</a>
+            render: (values) => {
+                const fornecedor = fornecedores.find((element) => element.id_fornecedor === values)
+                return <a href="#" className="text-purple-500 hover:text-purple-800">{fornecedor?.nome}</a>
+            }
         },
         {
             title: '',
             dataIndex: "acoes",
             key: 'acoes',
-            render: (text) => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800 hover:scale-110 transition duration-1000 ease-in-out" /></a>
+            render: () => <a href="#"><BiSolidPencil className="text-purple-500 hover:text-purple-800 hover:scale-110 transition duration-1000 ease-in-out" /></a>
 
         }
     ];
@@ -87,13 +90,13 @@ export default function Produtos() {
 
     const [fornecedorQuery, setFornecedorQuery] = useState<Fornecedor | undefined>(undefined)
 
-    const [cnpj, setCnpj] = useState('')
+    const [idFornecedor, setIdFornecedor] = useState('')
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/fornecedor/${cnpj}`).then(response => {
-            setFornecedorQuery(response.data.data)
+        axios.get(`http://127.0.0.1:8000/fornecedores/${idFornecedor}`).then(response => {
+            setFornecedorQuery(response.data)
         })
-    }, [cnpj])
+    }, [idFornecedor])
 
     const showModal = () => {
         setOpen(true);
@@ -101,22 +104,18 @@ export default function Produtos() {
 
     const handleOk = async () => {
         
-        await axios({
-            method: "POST",
-            url: 'http://127.0.0.1:8000/api/add-produto',
-            data: {
-                'nome-produto': "newProduto.nome",
-                preco: newProduto.preco,
-                fornecedor_cnpj: fornecedorQuery?.cnpj
-            }, 
-            headers:{
-                "Content-Type":'application/json'
-            } 
+        await axios.post('http://127.0.0.1:8000/produtos/', {
+            'nome': newProduto.nome,
+            'preco':newProduto.preco,
+            'fornecedor':idFornecedor
         }).then(response => {
-            console.log(response.data)
-        }).catch(err => {
-            console.log(err)
+            console.log(response)
         })
+
+        axios.get('http://127.0.0.1:8000/produtos').then(response => {
+            setProdutos(response.data)
+        })
+
     };
 
     const handleCancel = () => {
@@ -130,7 +129,7 @@ export default function Produtos() {
 
     fornecedores.forEach((element) => {
         options.push({
-            value: element.cnpj,
+            value: element.id_fornecedor,
             label: element.nome,
         })
     })
@@ -246,7 +245,7 @@ export default function Produtos() {
                             placeholder="Buscar pelo fornecedor . . ."
                             size="large"
                             onSelect={(values: any) => {
-                                setCnpj(values)
+                                setIdFornecedor(values)
                             }}
                         />
                     </Form.Item>
