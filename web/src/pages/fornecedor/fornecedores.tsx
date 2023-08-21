@@ -10,14 +10,21 @@ import { ColumnsType } from "antd/es/table";
 import { BiSolidPencil, BiSolidPhone } from "react-icons/bi";
 import { MdDescription } from "react-icons/md";
 import { HiIdentification, HiMap } from 'react-icons/hi'
+import { useNavigate } from "react-router-dom";
 
 export default function Fornecedores() {
 
     const { usuario } = useUsuarioContext()
 
+    const navigate = useNavigate();
+
     const [fornecedores, setFornecedores] = useState<Fornecedor[]>([])
 
     useEffect(() => {
+        if (usuario === undefined){
+            navigate('/login')
+        }
+
         axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
             setFornecedores(response.data)
         })

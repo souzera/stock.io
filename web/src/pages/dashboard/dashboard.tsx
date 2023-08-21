@@ -1,9 +1,19 @@
 import { DashboardContent } from "./dashboard-content"
 import useUsuarioContext from "../../components/context/usuario-context"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export function Dashboard() {
 
     const { usuario } = useUsuarioContext()
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (usuario === undefined){
+            navigate('/login')
+        }
+    },[usuario])
 
     console.log("Contexto:", usuario)
 

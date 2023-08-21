@@ -12,6 +12,7 @@ import { MdDescription } from "react-icons/md";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import { Fornecedor } from "../../types/fornecedor";
+import { useNavigate } from "react-router-dom";
 
 //todo: usuario context
 
@@ -22,7 +23,14 @@ export default function Produtos() {
 
     const { usuario } = useUsuarioContext()
 
+    const navigate = useNavigate()
+
     useEffect(() => {
+
+        if (usuario === undefined){
+            navigate('/login')
+        }
+
         axios.get('http://127.0.0.1:8000/produtos').then(response => {
             setProdutos(response.data)
         })
@@ -116,6 +124,8 @@ export default function Produtos() {
             setProdutos(response.data)
         })
 
+        setOpen(false)
+
     };
 
     const handleCancel = () => {
@@ -167,7 +177,7 @@ export default function Produtos() {
                             </div>
 
                             <div className="flex flex-1 h-full">
-                                <Table className="w-full" dataSource={produtos} columns={columns} pagination={{ pageSize: 5 }} />
+                                <Table className="w-full" dataSource={produtos} columns={columns} pagination={{ pageSize: 4 }} />
                             </div>
                         </div>
                     </main>
