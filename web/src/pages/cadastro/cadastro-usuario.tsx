@@ -3,10 +3,26 @@ import { Button, Form, Input } from "antd";
 import { FaIdCardAlt } from 'react-icons/fa'
 import { MdAlternateEmail } from 'react-icons/md'
 import { IoIosKey } from 'react-icons/io'
+import { useEffect, useState } from "react";
+
+interface CreatedUser{
+    nome:string|undefined;
+    username:string|undefined
+    password:string|undefined
+    confirmPassword:string|undefined
+}
 
 export function CadastroUsuario() {
 
     //TODO: post do usuario
+
+    const [createdUser, setCreatedUser] = useState<CreatedUser>()
+
+    useEffect(()=>{
+        console.log(createdUser)
+    },[createdUser])
+
+
 
     return (
         <>
@@ -51,6 +67,15 @@ export function CadastroUsuario() {
                                         prefix={<FaIdCardAlt className='text-zinc-300 text-xl' />}
                                         placeholder="nome"
                                         size="large"
+                                        onChange={(values) => {
+                                            console.log(values.target.value)
+                                            setCreatedUser({
+                                                nome: values.target.value,
+                                                username: createdUser?.username,
+                                                password: createdUser?.password,
+                                                confirmPassword: createdUser?.confirmPassword
+                                            })
+                                        }}
                                     />
                                 </Form.Item>
 
@@ -62,14 +87,21 @@ export function CadastroUsuario() {
                                         {
                                             required: true,
                                             message: 'Digite um usuário'
-                                        },
-                                        //TODO: verificar se o username está sendo usado
+                                        },//TODO: verificar se o username está sendo usado
                                     ]}
                                 >
                                     <Input
                                         prefix={<MdAlternateEmail className='text-zinc-300 text-xl' />}
                                         placeholder="username"
                                         size="large"
+                                        onChange={(values)=>{
+                                            setCreatedUser({
+                                                nome: createdUser?.nome,
+                                                username: values.target.value,
+                                                password: createdUser?.password,
+                                                confirmPassword: createdUser?.confirmPassword
+                                            })
+                                        }}
                                     />
                                 </Form.Item>
 
@@ -87,10 +119,18 @@ export function CadastroUsuario() {
                                                 //TODO: verificar se o username está sendo usado
                                             ]}
                                         >
-                                            <Input
+                                            <Input.Password
                                                 prefix={<IoIosKey className='text-zinc-300 text-xl' />}
                                                 placeholder="senha"
                                                 size="large"
+                                                onChange={(values) =>{
+                                                    setCreatedUser({
+                                                        nome: createdUser?.nome,
+                                                        username: createdUser?.username,
+                                                        password: values.target.value,
+                                                        confirmPassword: createdUser?.confirmPassword
+                                                    })
+                                                }}
                                             />
                                         </Form.Item>
                                     </div>
@@ -109,10 +149,18 @@ export function CadastroUsuario() {
                                                 //TODO: verificar se o username está sendo usado
                                             ]}
                                         >
-                                            <Input
+                                            <Input.Password
                                                 prefix={<IoIosKey className='text-zinc-300 text-xl' />}
                                                 placeholder="confirmar senha"
                                                 size="large"
+                                                onChange={(values) =>{
+                                                    setCreatedUser({
+                                                        nome: createdUser?.nome,
+                                                        username: createdUser?.username,
+                                                        password: createdUser?.password,
+                                                        confirmPassword: values.target.value,
+                                                    })}
+                                                }
                                             />
                                         </Form.Item>
                                     </div>

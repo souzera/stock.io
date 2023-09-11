@@ -177,7 +177,7 @@ export default function Produtos() {
                             </div>
 
                             <div className="flex flex-1 h-full">
-                                <Table className="w-full" dataSource={produtos} columns={columns} pagination={{ pageSize: 4 }} />
+                                <Table className="w-full" dataSource={produtos} columns={columns} pagination={{ pageSize: 5 }} />
                             </div>
                         </div>
                     </main>
