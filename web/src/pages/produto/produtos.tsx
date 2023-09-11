@@ -31,11 +31,12 @@ export default function Produtos() {
             navigate('/login')
         }
 
-        axios.get('http://127.0.0.1:8000/produtos').then(response => {
+        axios.get('http://127.0.0.1:8000/produtos/').then(response => {
             setProdutos(response.data)
+            console.log(produtos)
         })
 
-        axios.get('http://127.0.0.1:8000/fornecedores').then(response => {
+        axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
             setFornecedores(response.data)
         })
     }, [])
