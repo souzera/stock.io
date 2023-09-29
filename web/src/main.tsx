@@ -7,16 +7,16 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-import { Home } from './pages/home/home.tsx'
-import { Login } from './pages/login/login.tsx'
-import { CadastroUsuario } from './pages/cadastro/cadastro-usuario.tsx'
+import { Home } from './pages/home/index.tsx'
+import { Login } from './pages/login/index.tsx'
+import { CadastroUsuario } from './pages/cadastro/index.tsx'
 import { UsuarioContextProvider } from './components/context/usuario-context.tsx'
-import { Dashboard } from './pages/dashboard/dashboard.tsx'
+import { Dashboard } from './pages/dashboard/index.tsx'
 import { ConfigProvider } from 'antd'
 import ptBR from 'antd/es/locale/pt_BR';
-import Produtos from './pages/produto/produtos.tsx'
-import Settings from './pages/usuario/settings.tsx'
-import Fornecedores from './pages/fornecedor/fornecedores.tsx'
+import Produtos from './pages/produto/index.tsx'
+import Settings from './pages/usuario/index.tsx'
+import Fornecedores from './pages/fornecedor/index.tsx'
 
 //const {usuario} = useUsuarioContext()
 
