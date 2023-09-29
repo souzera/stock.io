@@ -31,8 +31,7 @@ export function DashboardContent(props: DashboardContentProps) {
                         <h1 className="text-4xl font-bold m-4">Dashboard</h1>
                         <div className="h-2" />
 
-                        <div className="flex flex-1 justify-center items-center bg-yellow-500 m-4 shadow-xl">
-                            coisas de dashboard
+                        <div className="flex flex-1 justify-center items-center bg-zinc-500 m-4 shadow-xl">
                         </div>
                     </div>
                 </main>
