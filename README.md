@@ -8,7 +8,6 @@ Stock.io é uma aplicação web de controle de estoque que permite gerenciar fac
 
 - [@souzera](https://github.com/souzera)
 
-
 ## Documentação de cores
 
 | Cor               | Hexadecimal                                                |
