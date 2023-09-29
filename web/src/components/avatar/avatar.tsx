@@ -1,4 +1,4 @@
-import { Dropdown, MenuProps, Space, message } from "antd";
+import { Dropdown, MenuProps, Space } from "antd";
 import { AiFillCaretDown } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import useUsuarioContext from "../context/usuario-context";

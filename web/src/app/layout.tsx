@@ -1,9 +1,9 @@
 import './globals.css'
-import { Inter, Poppins, Josefin_Sans } from 'next/font/google'
+//import { Inter, Poppins, Josefin_Sans } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
-const poppins = Poppins({subsets: ['latin'], weight: '300'})
-const josefin = Josefin_Sans({subsets:['latin']})
+//const inter = Inter({ subsets: ['latin'] })
+//const poppins = Poppins({subsets: ['latin'], weight: '300'})
+//const josefin = Josefin_Sans({subsets:['latin']})
 
 export const metadata = {
   title: 'Stock.io',

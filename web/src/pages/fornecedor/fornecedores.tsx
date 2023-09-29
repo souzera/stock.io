@@ -58,7 +58,7 @@ export default function Fornecedores() {
     // MODAL CONFIGS
 
     const [open, setOpen] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [confirmLoading ] = useState(false);
 
     const [nome, setNome] = useState('')
     const [cnpj, setCnpj] = useState('')

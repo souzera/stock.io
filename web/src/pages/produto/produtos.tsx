@@ -2,7 +2,7 @@ import axios from "axios";
 import AvatarBadge from "../../components/avatar/avatar";
 import { Sidebar } from "../../components/sidebar/sidebar";
 import { useEffect, useState } from "react";
-import { Button, Form, Input, InputNumber, Modal, Select, SelectProps, Spin, Table } from "antd";
+import { Button, Form, Input, InputNumber, Modal, Select, SelectProps, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Produto } from "../../types/produto";
 import { BiSolidPencil } from "react-icons/bi";
@@ -82,7 +82,7 @@ export default function Produtos() {
     // MODAL CONFIGS
 
     const [open, setOpen] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [confirmLoading ] = useState(false);
 
     const [newProduto, setNewProduto] = useState<Produto>(
         { nome: "", preco: 0 , fornecedor:undefined}
@@ -98,12 +98,12 @@ export default function Produtos() {
     }
 
     const [fornecedorQuery, setFornecedorQuery] = useState<Fornecedor | undefined>(undefined)
-
     const [idFornecedor, setIdFornecedor] = useState('')
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/fornecedores/${idFornecedor}`).then(response => {
             setFornecedorQuery(response.data)
+            console.log(fornecedorQuery)
         })
     }, [idFornecedor])
 

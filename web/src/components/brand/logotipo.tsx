@@ -5,7 +5,9 @@ interface LogoProps{
 
 export function LogotipoHorizontal(props:LogoProps){
 
-    const fillColor = `fill-${props.color}`
+    //const fillColor = `fill-${props.color}`
+
+    console.log(props.color)
 
     return (
         <div className="transition duration-1000 ease-in-out hover:scale-105">
