@@ -20,7 +20,7 @@ import Fornecedores from './pages/fornecedor/fornecedores.tsx'
 
 //const {usuario} = useUsuarioContext()
 
-const primaryColor = '#1890ff';
+// const primaryColor = '#1890ff';
 
 //todo: rotas publicas e privadas
 const router = createBrowserRouter([

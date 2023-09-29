@@ -11,9 +11,9 @@ export function UsuarioContextProvider({children}:any){
         _setUsuario(_usuario)
     }
 
-    const login = (usuario:Usuario) => {
-        setUsuario(usuario)
-    }
+    //const login = (usuario:Usuario) => {
+    //    setUsuario(usuario)
+    //}
 
     return (
         <>
