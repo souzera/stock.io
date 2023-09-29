@@ -38,7 +38,7 @@ export function Home() {
 
                 <section className="flex flex-col bg-zinc-100 justify-center items-center gap-6 py-12 px-12">
                     <div className="flex flex-1 gap-x-6 justify-center items-center max-md:flex-col ">
-                        <img src="src/assets/images/SVG/stock_io_logo.svg" className="w-[20%] -rotate-12 hover:scale-110 transition duration-1000 ease-in-out max-md:w-[80%]" alt="logotipo stock.io" />
+                        <img src="https://raw.githubusercontent.com/souzera/stock.io/bc709e5644b3c64038aee9eca025c8b8ca9d95c8/web/src/assets/images/SVG/stock_io_logo.svg" className="w-[20%] -rotate-12 hover:scale-110 transition duration-1000 ease-in-out max-md:w-[80%]" alt="logotipo stock.io" />
                         <p className="font-semibold w-[70%]">
                             Bem-vindo(a) à nossa aplicação de controle de estoque, a solução que simplifica o gerenciamento do seu inventário, aumentando a eficiência e ajudando você a tomar decisões mais inteligentes para o seu negócio. Criada com a mais recente tecnologia e focada na facilidade de uso, nossa aplicação oferece uma experiência completa para garantir que suas operações estejam sempre no caminho do sucesso.
                         </p>
