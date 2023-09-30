@@ -4,12 +4,13 @@ import { FaIdCardAlt } from 'react-icons/fa'
 import { MdAlternateEmail } from 'react-icons/md'
 import { IoIosKey } from 'react-icons/io'
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-interface CreatedUser{
-    nome:string|undefined;
-    username:string|undefined
-    password:string|undefined
-    confirmPassword:string|undefined
+interface CreatedUser {
+    nome: string | undefined;
+    username: string | undefined
+    password: string | undefined
+    confirmPassword: string | undefined
 }
 
 export function CadastroUsuario() {
@@ -18,11 +19,11 @@ export function CadastroUsuario() {
 
     const [createdUser, setCreatedUser] = useState<CreatedUser>()
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(createdUser)
-    },[createdUser])
+    }, [createdUser])
 
-
+    const navigate = useNavigate()
 
     return (
         <>
@@ -30,10 +31,8 @@ export function CadastroUsuario() {
 
 
                 <main className="bg-zinc-100 w-[30%] flex flex-col justify-center items-center px-5 py-12">
-                    <div className="my-4 px-4 w-[90%]">
-                        <a href="/">
-                            <img className="h-full w-full" src="/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="logotipo" />
-                        </a>
+                    <div className="my-4 px-4 w-[90%]" onClick={() => { navigate("/") }}>
+                        <img className="h-full w-full" src="https://raw.githubusercontent.com/souzera/stock.io/a329a9c60383518ef03a04ae4d4eb711ea4b8bd7/web/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="logotipo" />
                     </div>
 
                     <div id="formulario-cadastro" className="flex flex-1 flex-col items-center gap-3">
@@ -94,7 +93,7 @@ export function CadastroUsuario() {
                                         prefix={<MdAlternateEmail className='text-zinc-300 text-xl' />}
                                         placeholder="username"
                                         size="large"
-                                        onChange={(values)=>{
+                                        onChange={(values) => {
                                             setCreatedUser({
                                                 nome: createdUser?.nome,
                                                 username: values.target.value,
@@ -123,7 +122,7 @@ export function CadastroUsuario() {
                                                 prefix={<IoIosKey className='text-zinc-300 text-xl' />}
                                                 placeholder="senha"
                                                 size="large"
-                                                onChange={(values) =>{
+                                                onChange={(values) => {
                                                     setCreatedUser({
                                                         nome: createdUser?.nome,
                                                         username: createdUser?.username,
@@ -153,13 +152,14 @@ export function CadastroUsuario() {
                                                 prefix={<IoIosKey className='text-zinc-300 text-xl' />}
                                                 placeholder="confirmar senha"
                                                 size="large"
-                                                onChange={(values) =>{
+                                                onChange={(values) => {
                                                     setCreatedUser({
                                                         nome: createdUser?.nome,
                                                         username: createdUser?.username,
                                                         password: createdUser?.password,
                                                         confirmPassword: values.target.value,
-                                                    })}
+                                                    })
+                                                }
                                                 }
                                             />
                                         </Form.Item>
@@ -175,7 +175,7 @@ export function CadastroUsuario() {
                                 <div className=" text-zinc-400 placeholder:my-1 text-center">
                                     <div>
                                         <span>Já possui conta? </span>
-                                        <a className=" underline hover:text-zinc-500" href="/login">Login</a>
+                                        <span className=" underline hover:text-zinc-500" onClick={() => {navigate("/login")}}>Login</span>
                                     </div>
                                 </div>
 
@@ -186,7 +186,7 @@ export function CadastroUsuario() {
                 </main>
 
                 <aside className="bg-purple-500 w-[70%] flex justify-center items-center">
-                    <img className='object-cover h-[100%] w-[100%]' src="/src/assets/images/pictures/elf.jpg" alt="ilustração" />
+                    <img className='object-cover h-[100%] w-[100%]' src="https://raw.githubusercontent.com/souzera/stock.io/main/web/src/assets/images/pictures/elf.jpg" alt="ilustração" />
                 </aside>
 
             </div>
