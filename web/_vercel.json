@@ -1,5 +1,3 @@
 {
-    "redirects": [
-      { "source": "/(.*)", "destination": "https://stock-io.vercel.app/"}
-    ]
+    "redirects": []
 }
