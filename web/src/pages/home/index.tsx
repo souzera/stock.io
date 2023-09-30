@@ -1,25 +1,24 @@
+import { useNavigate } from "react-router-dom"
+
 export function Home() {
 
-    
+    const navigate = useNavigate()
+
     return (
         <div className="flex flex-col">
             <header className="flex flex-1 mb-3 gap-5 justify-between max-md:justify-center" >
 
-                <div className=" w-[20%] mx-8">
-                    <img src="/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="" />
+                <div className=" w-[15%] mx-8">
+                    <img src="https://raw.githubusercontent.com/souzera/stock.io/dcae6b12ad5ab243ee692c4e9808e99aae451175/web/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="Logo Stock.io" />
                 </div>
 
                 <div id="header-links" className="flex gap-4 py-2 px-6">
-                    <a href="/login">
-                        <div className="scale-95 py-3 px-5 rounded-2xl font-bold hover:scale-100 transition duration-1000 ease-in-out">
-                            Login
-                        </div>
-                    </a>
-                    <a href="/cadastrar-se">
-                        <div className="scale-95 bg-purple-500 py-3 px-5 rounded-2xl font-bold text-white hover:scale-100 transition duration-1000 ease-in-out">
-                            Cadastrar-se
-                        </div>
-                    </a>
+                    <div onClick={() => { navigate("/login") }} className="scale-95 py-3 px-5 rounded-2xl font-bold hover:scale-100 transition duration-1000 ease-in-out cursor-pointer">
+                        Login
+                    </div>
+                    <div onClick={() => { navigate("/cadastrar-se") }} className="scale-95 bg-purple-500 py-3 px-5 rounded-2xl font-bold text-white hover:scale-100 transition duration-1000 ease-in-out cursor-pointer">
+                        Cadastrar-se
+                    </div>
                 </div>
             </header>
 
@@ -31,7 +30,7 @@ export function Home() {
                         <h2 className="text-lg font-semibold">Nosso aplicativo de controle de estoque é a solução ideal para simplificar a gestão dos seus produtos e otimizar suas operações.</h2>
                     </div>
 
-                    <div id="call-to-action" className="bg-purple-500 text-white font-extrabold rounded-2xl py-4 px-7 transition duration-1000 ease-in-out hover:scale-110">
+                    <div onClick={() => { navigate("/login") }} id="call-to-action" className="bg-purple-500 text-white font-extrabold rounded-2xl py-4 px-7 transition duration-1000 ease-in-out hover:scale-110 cursor-pointer">
                         Experimente Grátis Agora!
                     </div>
                 </section>

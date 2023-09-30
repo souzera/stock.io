@@ -33,7 +33,7 @@ export function Login() {
             {
                 method: "POST",
                 url: url_query,
-                data:{
+                data: {
                     "username": login.username,
                     "password": login.password,
                     "remenber": login.remember
@@ -69,10 +69,8 @@ export function Login() {
                     <img className='object-cover h-[100%] w-[100%]' src="/src/assets/images/pictures/elf.jpg" alt="ilustração" />
                 </aside>
                 <main className="bg-zinc-100 w-[30%] flex flex-col justify-center items-center px-5 py-12">
-                    <div className="my-8 px-8 w-[90%]">
-                        <a href="/">
-                            <img className="h-full w-full" src="/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="logotipo" />
-                        </a>
+                    <div onClick={() => { navigate("/") }} className="my-8 px-8 w-[90%] cursor-pointer">
+                        <img className="h-full w-full" src="/src/assets/images/SVG/stock_io_logo_name_h.svg" alt="logotipo" />
                     </div>
 
                     <div id="formulario-login" className="flex flex-1 flex-col items-center gap-3">
