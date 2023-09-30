@@ -75,7 +75,8 @@ export default function Fornecedores() {
             nome: nome,
             cnpj: cnpj,
             endereco: endereco,
-            contato: contato
+            contato: contato,
+            usuario: usuario.usuario_id
         }
 
         await axios.post('http://127.0.0.1:8000/fornecedores/', fornecedor).then(response => console.log(response))

@@ -13,6 +13,7 @@ class Usuario(models.Model):
 
     def get_data_dict(self):
         return {
+            'usuario_id': self.id_usuario,
             'url_avatar': self.url_avatar,
             'nome' : self.nome,
             'username' : self.username,
@@ -25,6 +26,7 @@ class Fornecedor(models.Model):
     cnpj = models.CharField(max_length=256, unique=True)
     endereco = models.CharField(max_length=256)
     contato = models.CharField(max_length=128)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=None)
 
     def get_data_dict(self):
         return {
@@ -59,6 +61,7 @@ class Cliente(models.Model):
     cpf = models.CharField(max_length=256, unique=True)
     contato = models.CharField(max_length=256)
     endereco = models.CharField(max_length=256)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=None)
 
     def get_data_dict(self):
         return {
@@ -75,6 +78,7 @@ class Compra(models.Model):
     id_compra = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,null=True)
     data_compra = models.DateField(auto_now=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=None)
 
     def get_data_dict(self):
         return {'data_compra': self.data_compra}

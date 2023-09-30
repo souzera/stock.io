@@ -24,7 +24,7 @@ export function Home() {
 
             <main className="flex flex-1 flex-col h-screen justify-center items-center gap-12">
 
-                <section className="flex flex-col justify-center items-center py-28 gap-6">
+                <section className="flex flex-col justify-center items-center py-28 gap-6 h-[80vh]">
                     <div className="text-center w-[60%]">
                         <h1 className="text-3xl font-extrabold mb-4">Controle seu Estoque com Facilidade.</h1>
                         <h2 className="text-lg font-semibold">Nosso aplicativo de controle de estoque é a solução ideal para simplificar a gestão dos seus produtos e otimizar suas operações.</h2>
@@ -35,7 +35,7 @@ export function Home() {
                     </div>
                 </section>
 
-                <section className="flex flex-col bg-zinc-100 justify-center items-center gap-6 py-12 px-12">
+                <section className="flex flex-col bg-zinc-100 justify-center items-center gap-6 py-12 px-12 h-[100vh]">
                     <div className="flex flex-1 gap-x-6 justify-center items-center max-md:flex-col ">
                         <img src="https://raw.githubusercontent.com/souzera/stock.io/bc709e5644b3c64038aee9eca025c8b8ca9d95c8/web/src/assets/images/SVG/stock_io_logo.svg" className="w-[20%] -rotate-12 hover:scale-110 transition duration-1000 ease-in-out max-md:w-[80%]" alt="logotipo stock.io" />
                         <p className="font-semibold w-[70%]">
@@ -55,7 +55,7 @@ export function Home() {
                     <ul className="text-right flex flex-col font-semibold text-xs">
                         <li className="transition duration-1000 ease-in-out hover:text-zinc-500"><a href="#">Políticas de Privacidade</a></li>
                         <li className="transition duration-1000 ease-in-out hover:text-zinc-500"><a href="#">Termos de Uso</a></li>
-                        <li className="transition duration-1000 ease-in-out hover:text-zinc-500"><a href="">Fale Conosco</a></li>
+                        <li className="transition duration-1000 ease-in-out hover:text-zinc-500"><a href="#">Fale Conosco</a></li>
                     </ul>
                 </div>
             </footer>
