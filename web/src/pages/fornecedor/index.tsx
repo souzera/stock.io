@@ -25,6 +25,8 @@ export default function Fornecedores() {
             navigate('/login')
         }
 
+        console.log("ID Usuario: " + usuario.usuario_id) 
+
         axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
             setFornecedores(response.data)
         })
@@ -93,6 +95,9 @@ export default function Fornecedores() {
         setOpen(false);
     }
 
+    
+
+
     return (
         <>
             <div className="flex h-screen w-screen">
@@ -116,7 +121,7 @@ export default function Fornecedores() {
                         </div>
 
                         <div>
-                            <Table className="w-full" dataSource={fornecedores} columns={columns} pagination={{ pageSize: 5 }} />
+                            <Table className="w-full" dataSource={fornecedores.filter(fornecedor => fornecedor.usuario === usuario.usuario_id)} columns={columns} pagination={{ pageSize: 5 }} />
                         </div>
 
                     </div>

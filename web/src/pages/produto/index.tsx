@@ -39,6 +39,8 @@ export default function Produtos() {
         axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
             setFornecedores(response.data)
         })
+
+        navigate("/produtos")
     }, [])
 
     const url_default = () => {
@@ -89,7 +91,7 @@ export default function Produtos() {
     )
 
     const preco = (values: number) => {
-        console.log(values)
+        //console.log(values)
         setNewProduto({
             nome: newProduto?.nome,
             preco: values,
@@ -126,7 +128,6 @@ export default function Produtos() {
         })
 
         setOpen(false)
-
     };
 
     const handleCancel = () => {
