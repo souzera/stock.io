@@ -36,6 +36,9 @@ class Fornecedor(models.Model):
             'contato': self.contato
         }
 
+    def get_usuario(self):
+        return usuario.id_usuario
+
     def __str__(self):
         return self.nome
 
@@ -44,12 +47,14 @@ class Produto(models.Model):
     nome = models.CharField(max_length=512)
     preco = models.FloatField()
     fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=None)
 
     def get_data_dict(self):
         return {
             'nome' : self.nome,
             'preco' : self.preco,
-            'fornecedor': self.fornecedor.get_data_dict()
+            'fornecedor': self.fornecedor.get_data_dict(),
+            'usuario': self.fornecedor.get_usuario()
         }
 
     def __str__(self):

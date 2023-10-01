@@ -25,8 +25,6 @@ export default function Fornecedores() {
             navigate('/login')
         }
 
-        console.log("ID Usuario: " + usuario.usuario_id) 
-
         axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
             setFornecedores(response.data)
         })
