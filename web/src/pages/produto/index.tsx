@@ -109,7 +109,7 @@ export default function Produtos() {
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/fornecedores/${idFornecedor}`).then(response => {
             setFornecedorQuery(response.data)
-            //console.log(fornecedorQuery)
+            console.log(fornecedorQuery)
         })
     }, [idFornecedor])
 
