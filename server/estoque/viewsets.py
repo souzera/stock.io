@@ -3,14 +3,33 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from estoque import serializers
 from estoque import models
+from django_filters.rest_framework import DjangoFilterBackend
 
 class FornecedorViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.FornecedorSerializer
     queryset = models.Fornecedor.objects.all()
 
+    filter_backends = [DjangoFilterBackend]
+
+    filter_fields = (
+        'usuario'
+    )
+
+    def filter_queryset(self, queryset):
+        for backend in list(self.filter_backends):
+            queryset = backend().filter_queryset(self.request, queryset, view=self)
+
+        return queryset
+
 class ProdutoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ProdutoSerializer
     queryset = models.Produto.objects.all()
+
+    filter_backends = [DjangoFilterBackend]
+
+    filter_fields = (
+        'fornecedor'
+    )
 
     @action(detail=False, methods=['post'])
     def add(self, request):

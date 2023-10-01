@@ -93,6 +93,9 @@ export default function Fornecedores() {
         setOpen(false);
     }
 
+    
+
+
     return (
         <>
             <div className="flex h-screen w-screen">
@@ -116,7 +119,7 @@ export default function Fornecedores() {
                         </div>
 
                         <div>
-                            <Table className="w-full" dataSource={fornecedores} columns={columns} pagination={{ pageSize: 5 }} />
+                            <Table className="w-full" dataSource={fornecedores.filter(fornecedor => fornecedor.usuario === usuario.usuario_id)} columns={columns} pagination={{ pageSize: 5 }} />
                         </div>
 
                     </div>

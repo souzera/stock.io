@@ -4,4 +4,5 @@ export type Produto = {
     nome: string,
     preco: number|null,
     fornecedor: Fornecedor | undefined
+    usuario?: string
 }

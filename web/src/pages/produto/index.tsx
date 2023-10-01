@@ -27,18 +27,24 @@ export default function Produtos() {
 
     useEffect(() => {
 
-        if (usuario === undefined){
+        if (usuario === undefined) {
             navigate('/login')
         }
+        
+        axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
+            const lista: Fornecedor[] = response.data
+            setFornecedores(lista.filter(fornecedor => fornecedor.usuario === usuario.usuario_id))
+            console.log(fornecedores)
+        })
 
         axios.get('http://127.0.0.1:8000/produtos/').then(response => {
-            setProdutos(response.data)
+            const lista: Produto[] = response.data
+            setProdutos(lista.filter(produto => produto.usuario === usuario.usuario_id))
             console.log(produtos)
         })
+        
 
-        axios.get('http://127.0.0.1:8000/fornecedores/').then(response => {
-            setFornecedores(response.data)
-        })
+        
     }, [])
 
     const url_default = () => {
@@ -82,14 +88,14 @@ export default function Produtos() {
     // MODAL CONFIGS
 
     const [open, setOpen] = useState(false);
-    const [confirmLoading ] = useState(false);
+    const [confirmLoading] = useState(false);
 
     const [newProduto, setNewProduto] = useState<Produto>(
-        { nome: "", preco: 0 , fornecedor:undefined}
+        { nome: "", preco: 0, fornecedor: undefined }
     )
 
     const preco = (values: number) => {
-        console.log(values)
+        //console.log(values)
         setNewProduto({
             nome: newProduto?.nome,
             preco: values,
@@ -112,30 +118,32 @@ export default function Produtos() {
     };
 
     const handleOk = async () => {
-        
-        await axios.post('http://127.0.0.1:8000/produtos/', {
+
+        const produto = {
             'nome': newProduto.nome,
-            'preco':newProduto.preco,
-            'fornecedor':idFornecedor
-        }).then(response => {
+            'preco': newProduto.preco,
+            'fornecedor': idFornecedor,
+            'usuario': usuario.usuario_id
+        }
+
+        await axios.post('http://127.0.0.1:8000/produtos/', produto).then(response => {
             console.log(response)
         })
-
+        
         axios.get('http://127.0.0.1:8000/produtos').then(response => {
             setProdutos(response.data)
         })
 
         setOpen(false)
-
     };
 
     const handleCancel = () => {
         console.log('Clicked cancel button');
         setOpen(false);
     };
-    
-    const handleChange = () => {};
-    
+
+    const handleChange = () => { };
+
     const options: SelectProps['options'] = [];
 
     fornecedores.forEach((element) => {
@@ -144,7 +152,6 @@ export default function Produtos() {
             label: element.nome,
         })
     })
-
 
     return (
         <>

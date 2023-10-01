@@ -192,12 +192,12 @@ export function Login() {
                                 <div className=" text-zinc-400 placeholder:my-1 text-center">
                                     <div>
                                         <span>Não possui conta? </span>
-                                        <span onClick={() => {navigate("/cadastrar-se")}} className=" underline hover:text-zinc-500">Cadastrar-se
+                                        <span onClick={() => {navigate("/cadastrar-se")}} className=" underline cursor-pointer hover:text-zinc-500">Cadastrar-se
                                         </span>
                                     </div>
                                     <div onClick={() => {
                                         console.log("ir para tela de esqueceu a senha")
-                                    }} className="underline hover:text-zinc-500">
+                                    }} className="underline cursor-pointer hover:text-zinc-500">
                                         Esqueceu a senha?
                                     </div>
                                 </div>
